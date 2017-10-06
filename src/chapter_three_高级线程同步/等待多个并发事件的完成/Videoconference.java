@@ -22,7 +22,7 @@ public class Videoconference implements Runnable {
 		System.out.printf("VideoConference: Initialization: %d participants.\n", controller.getCount());
 		
 		try {
-			controller.await();
+			controller.await(); //阻塞直到CountDownLatch的内部计数器达到0
 			
 			System.out.printf("VideoConference: All the participants have come\n");
 		} catch (InterruptedException e) {
