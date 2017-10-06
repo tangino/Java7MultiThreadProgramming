@@ -18,6 +18,10 @@ public class Main {
 
 		Grouper grouper = new Grouper(results);
 
+		/*
+		 * CyclicBarrier有点类似于JavaScript中的回调机制
+		 * 当指定的所有线程都执行完毕后，CyclicBarrier中指定的线程才会被执行
+		 */
 		CyclicBarrier barrier = new CyclicBarrier(PARTICIPANTS, grouper);
 
 		Searcher searcher[] = new Searcher[PARTICIPANTS];
@@ -30,7 +34,6 @@ public class Main {
 		}
 
 		System.out.printf("Main: The main thread has finished.\n");
-
 	}
 
 }

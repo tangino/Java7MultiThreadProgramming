@@ -1,5 +1,11 @@
 package chapter_three_高级线程同步.在集合点的同步;
 
+/**
+ * 统计线程，当所有查找线程都执行完毕后执行这个统计线程
+ * 此线程由CyclicBarrier类指定
+ * @author dns
+ *
+ */
 public class Grouper implements Runnable {
 
 	private Results results;

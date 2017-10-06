@@ -11,6 +11,9 @@ public class MatrixMock {
 		data = new int[size][length];
 		Random random = new Random();
 
+		/*
+		 * 生成数据矩阵
+		 */
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < length; j++) {
 				data[i][j] = random.nextInt(10);
