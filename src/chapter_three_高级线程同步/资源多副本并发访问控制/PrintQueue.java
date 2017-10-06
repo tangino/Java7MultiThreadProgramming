@@ -32,9 +32,9 @@ public class PrintQueue {
 	public void printJob(Object document) {
 
 		try {
-			semaphore.acquire();
+			semaphore.acquire();  //请求进入临界区的权限
 
-			int assignedPrinter = getPrinter();
+			int assignedPrinter = getPrinter();  //真正的临界区，必须使用Lock保护
 
 			long duration = (long) (Math.random() * 10);
 			System.out.printf("Printer %d, %s: PrintQueue: Printing a Job during %d seconds\n", assignedPrinter, Thread.currentThread().getName(),
@@ -45,7 +45,7 @@ public class PrintQueue {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
-			semaphore.release();
+			semaphore.release();  //释放权限
 		}
 	}
 
@@ -57,8 +57,8 @@ public class PrintQueue {
 		int ret = -1;
 
 		try {
-			lockPrinters.lock();
-
+			lockPrinters.lock();  //使用Lock保护数据，防止数据出错
+			System.out.printf("Thread %d enter getPrinter\n", Thread.currentThread().getId());
 			for (int i = 0; i < freePrinters.length; i++) {
 				if (freePrinters[i]) {
 					ret = i;

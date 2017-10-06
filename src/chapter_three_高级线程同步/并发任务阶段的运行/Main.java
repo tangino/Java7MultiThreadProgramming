@@ -1,4 +1,4 @@
-package chapter_three_高级线程同步.并发阶段任务的运行;
+package chapter_three_高级线程同步.并发任务阶段的运行;
 
 import java.util.concurrent.Phaser;
 
