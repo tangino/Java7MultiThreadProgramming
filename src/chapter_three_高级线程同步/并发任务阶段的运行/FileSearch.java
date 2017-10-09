@@ -27,7 +27,7 @@ public class FileSearch implements Runnable {
 
 	@Override
 	public void run() {
-		//当3个参与者都执行到这里的时候才返回继续执行后面的代码
+		//当3个参与者都执行到这里的时候才继续执行后面的代码
 		phaser.arriveAndAwaitAdvance(); 
 		System.out.printf("%s: Starting.\n", Thread.currentThread().getName());
 
@@ -49,6 +49,10 @@ public class FileSearch implements Runnable {
 
 		showInfo();
 
+		/*
+		 * 所有工作处理完毕，注销线程，每个线程到达这里后马上注销不等待其他参与者，
+		 * 执行一次参与者减1，
+		 */
 		phaser.arriveAndDeregister();
 		System.out.printf("%s: Work completed.\n", Thread.currentThread().getName());
 	}
@@ -94,6 +98,7 @@ public class FileSearch implements Runnable {
 			System.out.printf("%s: Phase %d: 0 results.\n", Thread.currentThread().getName(), phaser.getPhase());
 
 			System.out.printf("%s: Phase %d: End.\n", Thread.currentThread().getName(), phaser.getPhase());
+			//把没有数据的线程从参与者中排除
 			phaser.arriveAndDeregister();
 			return false;
 		} else {

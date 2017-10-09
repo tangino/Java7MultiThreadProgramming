@@ -2,6 +2,12 @@ package chapter_three_高级线程同步.等待多个并发事件的完成;
 
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * 视频会议类
+ * 只有所有的参会者到达后才会开始
+ * @author dns
+ *
+ */
 public class Videoconference implements Runnable {
 
 	private final CountDownLatch controller;

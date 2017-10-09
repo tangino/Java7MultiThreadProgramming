@@ -18,15 +18,22 @@ public class Consumer implements Runnable {
 	public void run() {
 		int cycle = 1;
 
+		/*
+		 * 交换数据10次
+		 */
 		for (int i = 0; i < 10; i++) {
 			System.out.printf("Consumer: Cycle %d\n", cycle);
 
 			try {
+				//把线程置于休眠，等待生产者线程到达进行数据交换
 				buffer = exchanger.exchange(buffer);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 
+			/*
+			 * 消费数据
+			 */
 			for (int j = 0; j < 10; j++) {
 				String message = buffer.get(0);
 				System.out.println("Consumer: " + message);
@@ -36,5 +43,4 @@ public class Consumer implements Runnable {
 			cycle++;
 		}
 	}
-
 }
