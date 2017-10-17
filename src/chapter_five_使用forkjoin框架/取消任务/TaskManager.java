@@ -16,7 +16,7 @@ public class TaskManager {
 		tasks.add(task);
 	}
 
-	public void cancelTasks(ForkJoinTask<Integer> cancelTask) {
+	public void cancelTasks() {
 		for (ForkJoinTask<Integer> task : tasks) {
 			task.cancel(true);
 			((SearchNumberTask) task).writeCancelMessage();

@@ -49,7 +49,7 @@ public class SearchNumberTask extends RecursiveTask<Integer> {
 				/*
 				 * 第一个找到数字的任务把剩下的任务取消掉, 已经开始的任务不能被取消
 				 */
-				manager.cancelTasks(this);
+				manager.cancelTasks();
 				return i;
 			}
 
